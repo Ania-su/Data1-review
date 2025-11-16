@@ -1,0 +1,15 @@
+1) SELECT id, first_name, last_name FROM Employee WHERE team_id IS NULL;
+
+2) SELECT e.id, e.first_name, e.last_name FROM Employee e LEFT JOIN Leave l ON e.id = l.employee_id WHERE l.employee_id IS NULL;
+
+3) SELECT L.id AS leave_id, L.start_date, L.end_date, E.first_name, E.last_name, T.name AS team_name FROM Leave L JOIN Employee E ON L.employee_id = E.id LEFT JOIN Team T ON E.team_id = T.id;
+
+4) SELECT contract_type, COUNT(*) AS employees FROM Employee GROUP BY contract_type;
+
+5) SELECT COUNT(*) AS employees_on_leave_today FROM Leave
+WHERE CURRENT_DATE BETWEEN start_date AND end_date;
+
+6) SELECT E.id, E.first_name, E.last_name, T.name AS team_name
+FROM Employee E LEFT JOIN Team T ON E.team_id = T.id 
+JOIN Leave L ON E.id = L.employee_id
+WHERE CURRENT_DATE BETWEEN L.start_date AND L.end_date;
